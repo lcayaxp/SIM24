@@ -1,0 +1,265 @@
+.flex {
+    display: flex;
+    justify-content: space-between; /* Distribuye los elementos con espacio entre ellos */
+}
+
+.flex > div {
+    flex: 1; /* Hace que los divs ocupen el mismo espacio */
+    margin: 0 5%; /* Añade espacio entre los divs */
+}
+
+.effectosA, .effectosB, .effectosC, .effectosD {
+    border-radius: 5%;
+    border: 2px solid #9AC1B1;
+    padding: 1rem; /* Añade espacio interno para que el texto no esté demasiado cerca del borde */
+    font-size: 1.875rem; /* Tamaño de fuente equivalente a 30px */
+    height: 90%; /* Altura del 80% */
+    width: 100%;
+    margin: 2%;
+    color: white;
+}
+
+/* Añade margen inferior al section para separarlo de los divs */
+section {
+    margin-top: 10%; /* Ajusta este valor según sea necesario */
+}
+
+.effectosA:hover{
+    background-color: #C93202;
+}
+
+.effectosB:hover{
+    background-color: #9AC1B1;
+}
+
+.effectosC:hover{
+    background-color: #C8D1D1;
+}
+
+.effectosD:hover{
+    background-color:#DECF3E ;
+}
+
+/* Cambiar el tamaño del texto */
+p {
+    font-size: 20px; /* Tamaño en píxeles */
+}
+
+
+
+
+
+
+
+.my-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.my-section .box {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px; /* Espacio entre grupos de divs */
+}
+
+.my-section .box-item {
+    margin: 0 1px; /* Espacio entre elementos dentro de cada grupo */
+}
+
+.box-item-content {
+    text-align: center; /* Centrar el contenido dentro de cada box-item */
+}
+.piramid {
+    width: 200px; /* Ancho de la imagen */
+    height: 200px; /* Altura de la imagen */
+}
+
+.box-item-button {
+    display: block;
+   
+    text-decoration: none;
+    color: #333;
+    border: 1px solid #333;
+
+    border-radius: 5px;
+}
+
+.box-item-button:hover {
+    background-color: red;
+    color: #fff;
+}
+
+
+
+
+
+  /* Estilos para los iconos */
+  .icon-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem; /* Espacio entre los iconos y el footer */
+  }
+
+  .icon-container a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px; /* Espacio entre los iconos */
+    background-color: #333; /* Color de fondo de los iconos */
+    color: white; /* Color de los iconos */
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    transition: all 0.3s ease;
+  }
+
+  .icon-container a:hover {
+    transform: scale(1.1); /* Efecto de escala al pasar el mouse */
+  }
+
+  /* Estilos para el footer */
+  .footer {
+    background-color: #f7f7f7; /* Color de fondo del footer */
+    color: #333; /* Color del texto del footer */
+    text-align: center;
+    padding: 1rem;
+  }
+
+
+
+
+
+#home {
+    margin-top: -20px; /* Ajusta este valor según sea necesario */
+}
+
+
+.flex-container {
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    margin-top: 20px; /* Espacio arriba y abajo del contenedor */
+}
+
+.flex-item {
+    width: calc(50% - 20px); /* Ancho del 50% con margen */
+    margin: 0 10px; /* Espacio entre los elementos */
+}
+
+.cupo-limitado {
+    border: 2px solid #5c6ac4; 
+    border-radius: 5%;
+    color: white;
+    width: 100%;
+    margin: auto; /* Centrar horizontalmente */
+    text-align: center; /* Centrar texto horizontalmente */
+}
+
+.AB {
+    background-color: red;
+}
+
+
+
+
+.counter {
+    position: relative;
+    display: inline-block;
+}
+
+.counter::after {
+    content: ' ';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 3px;
+    background-color: #FFF;
+    animation: counterAnimation 2s infinite;
+}
+
+@keyframes counterAnimation {
+    0% {
+        width: 0%;
+    }
+    50% {
+        width: 100%;
+    }
+    100% {
+        width: 0%;
+    }
+}
+
+
+
+label,p,.titleas{
+    color: white;
+}
+ol{
+    color: antiquewhite;
+}
+
+
+  /* Estilos para el registro de pagos */
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Muli', sans-serif;
+    background-color: #000;
+    color: #fff;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 50px;
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 50px;
+    background-color: rgba(75, 0, 130, 0.1);
+    border-radius: 8px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="file"] {
+    margin-bottom: 20px;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: #4b0082;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #6a5acd;
+}
+
+input[type="text"],
+input[type="number"] {
+    border-radius: 10px;
+}

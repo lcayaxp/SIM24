@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIM24</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shorthandcss@1.1.1/dist/shorthand.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:200,300,400,500,600,700,800,900&display=swap" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" />
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+    <link rel="stylesheet" href="assets/styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+</head>
+
+<body class="bg-black muli">
+    <nav class="w-100pc flex flex-column md-flex-row md-px-10 py-5 bg-black">
+        <div class="flex justify-between">
+            <a href="#" class="flex items-center p-2 mr-4 no-underline">
+                <h2>SIM24</h2>
+            </a>
+            <a data-toggle="toggle-nav" data-target="#nav-items" href="#"
+                class="flex items-center ml-auto md-hidden indigo-lighter opacity-50 hover-opacity-100 ease-300 p-1 m-3">
+                <i data-feather="menu"></i>
+            </a>
+        </div>
+        <div id="nav-items" class="hidden flex sm-w-100pc flex-column md-flex md-flex-row md-justify-end items-center">
+            <a href="index.html" class="fs-s1 mx-3 py-3 indigo no-underline hover-underline">Inicio</a>
+            <a href="detalle.html" class="fs-s1 mx-3 py-3 indigo no-underline hover-underline">Pago</a>
+            <a href="registrarPago.html" class="fs-s1 mx-3 py-3 indigo no-underline hover-underline">Registro de pago</a>
+            <a href="registro.html" class="button bg-white black fw-600 no-underline mx-5">Registro</a>
+        </div>
+    </nav>
+
+    <h1>Detalle de Pago</h1>
+    <div class="flex justify-center">
+    
+    <form id="payment-form" class="w-full max-w-lg css.main/styles" style="padding: 50px;">
+        <label for="carnet">Número de Carnet:</label>
+        <input type="text" id="carnet" name="carnet" ><br>
+        <label for="merchandise">Merchandising:</label>
+        <select id="merchandise" name="merchandise">
+            <option value="none">Selecciona un artículo</option>
+            <option value="sombrero">Sombrero</option>
+            <option value="vaso">Vaso</option>
+            <option value="gorra">Gorra</option>
+        </select><br>
+        <label for="quantity">Cantidad:</label>
+        <input type="number" id="quantity" name="quantity" min="1" max="10" ><br>
+        <button type="button" id="add-item" class="button bg-indigo indigo-lightest">Agregar</button>
+
+        <div id="pdf-content">
+            <h2 class="titleas">Artículos Seleccionados:</h2>
+            <ol id="selected-items"></ol>
+            <p>Total General: <span id="total"></span></p>
+        </div>
+        <div class="mb-6">
+            <div class="g-recaptcha" data-sitekey="6Lfum6QpAAAAAFdGimbPCq8qwvxoFX89SuFapjrR"></div>
+        </div>
+        <button class="button-lg bg-indigo indigo-lightest fw-300 fs-s3 br-l-0" id="download-pdf">Registrar</button>
+    </form>
+</div>
+    <script src="assets/js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/vfs_fonts.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@15.0.0/dist/smooth-scroll.polyfills.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>

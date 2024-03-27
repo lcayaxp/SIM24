@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIM24</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shorthandcss@1.1.1/dist/shorthand.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:200,300,400,500,600,700,800,900&display=swap" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" />
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+    <link rel="stylesheet" href="assets/styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+
+<body class="bg-black muli">
+    <nav class="w-100pc flex flex-column md-flex-row md-px-10 py-5 bg-black">
+        <div class="flex justify-between">
+            <a href="#" class="flex items-center p-2 mr-4 no-underline">
+                <h2>SIM24</h2>
+            </a>
+            <a data-toggle="toggle-nav" data-target="#nav-items" href="#"
+                class="flex items-center ml-auto md-hidden indigo-lighter opacity-50 hover-opacity-100 ease-300 p-1 m-3">
+                <i data-feather="menu"></i>
+            </a>
+        </div>
+        <div id="nav-items" class="hidden flex sm-w-100pc flex-column md-flex md-flex-row md-justify-end items-center">
+            <a href="#home" class="fs-s1 mx-3 py-3 indigo no-underline hover-underline">Inicio</a>
+            <a href="#pricing" class="fs-s1 mx-3 py-3 indigo no-underline hover-underline">Pago</a>
+            <a href="#blog" class="fs-s1 mx-3 py-3 indigo no-underline hover-underline">Registro de pago</a>
+            <a href="#" class="button bg-white black fw-600 no-underline mx-5">Registro</a>
+        </div>
+    </nav>
+
+    <h1>Detalle de Pago</h1>
+    <div class="flex justify-center">
+    
+    <form id="payment-form" class="w-full max-w-lg bg-indigo-lightest-10" style="padding: 50px;">
+        <label for="carnet">Número de Carnet:</label>
+        <input type="text" id="carnet" name="carnet" required><br>
+        <label for="merchandise">Merchandising:</label>
+        <select id="merchandise" name="merchandise">
+            <option value="none">Selecciona un artículo</option>
+            <option value="sombrero">Sombrero</option>
+            <option value="vaso">Vaso</option>
+            <option value="gorra">Gorra</option>
+        </select><br>
+        <label for="quantity">Cantidad:</label>
+        <input type="number" id="quantity" name="quantity" min="1" max="10" required><br>
+        <button type="button" id="add-item" class="button bg-indigo indigo-lightest">Agregar</button>
+
+        <div id="pdf-content">
+            <h2 id="titleas">Artículos Seleccionados:</h2>
+            <ol id="selected-items"></ol>
+            <p>Total General: <span id="total"></span></p>
+        </div>
+        <button class="button-lg bg-indigo indigo-lightest fw-300 fs-s3 br-l-0" id="download-pdf">Registrar</button>
+    </form>
+</div>
+    <script>
+        var totalGeneral = 0;
+        var items = [];
+
+        document.getElementById('add-item').addEventListener('click', function() {
+            var merchandise = document.getElementById('merchandise').value;
+            var quantity = parseInt(document.getElementById('quantity').value);
+            var itemName = '';
+            var price = 0;
+            
+            switch (merchandise) {
+                case 'sombrero':
+                    itemName = 'Sombrero';
+                    price = 100;
+                    break;
+                case 'vaso':
+                    itemName = 'Vaso';
+                    price = 50;
+                    break;
+                case 'gorra':
+                    itemName = 'Gorra';
+                    price = 75;
+                    break;
+                default:
+                    break;
+            }
+            
+            var total = price * quantity;
+            totalGeneral += total;
+
+            items.push({ itemName: itemName, quantity: quantity, price: price });
+
+            var listItem = document.createElement('li');
+            listItem.textContent = itemName + ' - Cantidad: ' + quantity + ' - Precio Unitario: Q' + price + ' - Total: Q' + total;
+            
+            var deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Eliminar';
+            deleteButton.addEventListener('click', function() {
+                totalGeneral -= total;
+                items = items.filter(item => item.itemName !== itemName);
+                listItem.remove();
+                document.getElementById('total').textContent = 'Q' + totalGeneral;
+            });
+            listItem.appendChild(deleteButton);
+
+            document.getElementById('selected-items').appendChild(listItem);
+            document.getElementById('total').textContent = 'Q' + totalGeneral;
+        });
+
+        document.getElementById('download-pdf').addEventListener('click', function() {
+            var docDefinition = {
+                content: [
+                    { text: 'Detalle de Pago', style: 'header' },
+             
+                    { text: 'Artículos Seleccionados:', style: 'subheader' },
+                    {
+                        ul: items.map(item => `${item.itemName} - Cantidad: ${item.quantity} - Precio Unitario: Q${item.price} - Total: Q${item.price * item.quantity}`)
+                    },
+                    { text: `Total General: Q${totalGeneral}`, style: 'total' }
+                ],
+                styles: {
+                    header: { fontSize: 18, bold: true, margin: [0, 0, 0, 10] },
+                    subheader: { fontSize: 16, bold: true, margin: [0, 10, 0, 5] },
+                    total: { fontSize: 14, bold: true, margin: [0, 10, 0, 0] }
+                }
+            };
+
+            pdfMake.createPdf(docDefinition).download('detalle_pago.pdf');
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/vfs_fonts.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@15.0.0/dist/smooth-scroll.polyfills.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>
